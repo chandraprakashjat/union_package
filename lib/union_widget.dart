@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:union/union.dart';
+
 part './operation/operation.dart';
 
 class UnionTypeWidget extends StatelessWidget {
@@ -10,13 +14,20 @@ class UnionTypeWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Union Operation Demo'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Wrap(
+        spacing: 20,
+        runSpacing: 20,
         children: [
-          TextButton(
-              onPressed: () => createUnion(), child: const Text('Create Union'))
+          _createWidget('Create Union', createUnion),
+          _createWidget('Union Type', createUnion),
+          _createWidget('Compare Union', createUnion),
+          _createWidget('Copy Union', createUnion),
         ],
       ),
     );
+  }
+
+  _createWidget(String title, Function function) {
+    return TextButton(onPressed: () => function, child: Text(title));
   }
 }
